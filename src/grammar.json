@@ -6227,7 +6227,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_parenthesized_expression"
+          "name": "parenthesized_expression"
         },
         {
           "type": "SYMBOL",
@@ -10287,7 +10287,7 @@
         }
       ]
     },
-    "_parenthesized_expression": {
+    "parenthesized_expression": {
       "type": "PREC_LEFT",
       "value": 7,
       "content": {
@@ -11158,7 +11158,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_parenthesized_expression"
+              "name": "parenthesized_expression"
             },
             {
               "type": "SYMBOL",
@@ -11668,7 +11668,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_parenthesized_expression"
+          "name": "parenthesized_expression"
         },
         {
           "type": "SYMBOL",
