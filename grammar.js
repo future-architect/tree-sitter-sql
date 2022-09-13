@@ -690,7 +690,7 @@ module.exports = grammar({
     named_constraint: $ => seq("CONSTRAINT", $.identifier),
     _column_default_expression: $ =>
       choice(
-        $._parenthesized_expression,
+        $.parenthesized_expression,
         $.string,
         $.number,
         $.identifier,
@@ -1092,7 +1092,7 @@ module.exports = grammar({
         kw("EXCLUDE NO OTHERS"),
       ),
 
-    _parenthesized_expression: $ =>
+    parenthesized_expression: $ =>
       prec.left(PREC.unary, seq("(", $._expression, ")")),
     is_expression: $ =>
       prec.left(
@@ -1179,7 +1179,7 @@ module.exports = grammar({
       seq(
         // TODO: should be moved to basic expression or something
         choice(
-          $._parenthesized_expression,
+          $.parenthesized_expression,
           $.string,
           $._identifier,
           $.function_call,
@@ -1257,7 +1257,7 @@ module.exports = grammar({
         $.in_expression,
         $.is_expression,
         $.boolean_expression,
-        $._parenthesized_expression,
+        $.parenthesized_expression,
         $.type_cast,
         $.unary_expression,
         $.binary_expression,
