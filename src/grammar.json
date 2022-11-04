@@ -10399,6 +10399,62 @@
         ]
       }
     },
+    "between_and_expression": {
+      "type": "PREC_LEFT",
+      "value": 3,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[nN][oO][tT]"
+                },
+                "named": false,
+                "value": "NOT"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[bB][eE][tT][wW][eE][eE][nN]"
+            },
+            "named": false,
+            "value": "BETWEEN"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[aA][nN][dD]"
+            },
+            "named": false,
+            "value": "AND"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        ]
+      }
+    },
     "boolean_expression": {
       "type": "CHOICE",
       "members": [
@@ -11661,6 +11717,10 @@
         {
           "type": "SYMBOL",
           "name": "is_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "between_and_expression"
         },
         {
           "type": "SYMBOL",

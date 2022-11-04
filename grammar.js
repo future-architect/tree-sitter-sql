@@ -1105,6 +1105,13 @@ module.exports = grammar({
         ),
       ),
     distinct_from: $ => prec.left(seq(kw("DISTINCT FROM"), $._expression)),
+    between_and_expression: $ =>
+      prec.left(
+        PREC.comparative,
+        seq($._expression, optional(kw("NOT")), kw("BETWEEN"),
+            $._expression, kw("AND"), $._expression)
+      )
+      ,
     boolean_expression: $ =>
       choice(
         prec.left(PREC.unary, seq(kw("NOT"), $._expression)),
@@ -1256,6 +1263,7 @@ module.exports = grammar({
         $.number,
         $.in_expression,
         $.is_expression,
+        $.between_and_expression,
         $.boolean_expression,
         $.parenthesized_expression,
         $.type_cast,
