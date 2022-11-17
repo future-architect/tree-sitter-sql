@@ -7688,6 +7688,18 @@
             "members": [
               {
                 "type": "SYMBOL",
+                "name": "_combining_query"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
                 "name": "order_by_clause"
               },
               {
@@ -7718,6 +7730,82 @@
                 "type": "BLANK"
               }
             ]
+          }
+        ]
+      }
+    },
+    "_combining_query": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[iI][nN][tT][eE][rR][sS][eE][cC][tT]"
+                },
+                "named": false,
+                "value": "INTERSECT"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[uU][nN][iI][oO][nN]"
+                },
+                "named": false,
+                "value": "UNION"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[eE][xX][cC][eE][pP][tT]"
+                },
+                "named": false,
+                "value": "EXCEPT"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[aA][lL][lL]"
+                    },
+                    "named": false,
+                    "value": "ALL"
+                  },
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[dD][iI][sS][tT][iI][nN][cC][tT]"
+                    },
+                    "named": false,
+                    "value": "DISTINCT"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "select_statement"
           }
         ]
       }
