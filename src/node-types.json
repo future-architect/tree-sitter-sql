@@ -6069,6 +6069,10 @@
           "named": true
         },
         {
+          "type": "select_statement",
+          "named": true
+        },
+        {
           "type": "where_clause",
           "named": true
         },
@@ -8421,6 +8425,10 @@
     "named": false
   },
   {
+    "type": "EXCEPT",
+    "named": false
+  },
+  {
     "type": "EXCLUDE",
     "named": false
   },
@@ -8578,6 +8586,10 @@
   },
   {
     "type": "INSTEAD_OF",
+    "named": false
+  },
+  {
+    "type": "INTERSECT",
     "named": false
   },
   {
@@ -8966,6 +8978,10 @@
   },
   {
     "type": "UNBOUNDED_PRECEDING",
+    "named": false
+  },
+  {
+    "type": "UNION",
     "named": false
   },
   {

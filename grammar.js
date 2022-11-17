@@ -837,10 +837,24 @@ module.exports = grammar({
           optional($.where_clause),
           optional($.group_by_clause),
           optional(commaSep1($.window_clause)),
+          optional($._combining_query),
           optional($.order_by_clause),
           optional($.limit_clause),
           optional($.offset_clause),
         ),
+      ),
+
+    _combining_query: $ =>
+      prec.right(
+        seq(
+          choice(
+            kw("INTERSECT"),
+            kw("UNION"),
+            kw("EXCEPT")
+          ),
+          optional(choice(kw("ALL"), kw("DISTINCT"))),
+          $.select_statement
+        )
       ),
 
     group_by_clause: $ =>
