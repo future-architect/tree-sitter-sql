@@ -44,3 +44,47 @@ DELETE FROM bar;
             (identifier)))))
     (from_clause
       (identifier))))
+
+================================================================================
+DELETE statement with RETURNING clause
+================================================================================
+
+DELETE FROM test_user
+WHERE id = 2
+RETURNING id, name;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (delete_statement
+    (from_clause
+      (identifier))
+    (where_clause
+      (binary_expression
+        left: (identifier)
+        right: (number)))
+    (returning_clause
+      (identifier)
+      (identifier))))
+
+================================================================================
+DELETE statement with RETURNING *
+================================================================================
+
+DELETE FROM products
+  WHERE obsoletion_date = 'today'
+  RETURNING *;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (delete_statement
+    (from_clause
+      (identifier))
+    (where_clause
+      (binary_expression
+        left: (identifier)
+        right: (string
+          content: (content))))
+    (returning_clause
+      (asterisk_expression))))

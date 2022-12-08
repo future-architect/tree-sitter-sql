@@ -318,3 +318,54 @@ INSERT INTO table1 VALUES (1, 'a'), (2, 'b') FETCH NEXT 1 ROWS ONLY;
           (content)))
       (fetch_clause
         (number)))))
+
+================================================================================
+INSERT statement with RETURNING clause
+================================================================================
+
+INSERT INTO distributors (did, dname) VALUES (DEFAULT, 'XYZ Widgets')
+   RETURNING did;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (insert_statement
+    (identifier)
+    (identifier)
+    (identifier)
+    (values_clause
+      (values_clause_item
+        (identifier)
+        (string
+          content: (content))))
+    (returning_clause
+      (identifier))))
+
+================================================================================
+INSERT statement with aliased table
+================================================================================
+
+INSERT
+INTO
+	TABLE1 AS TBL1
+(
+	COLUMN1
+,	COLUMN2
+) VALUES (
+	VALUE1
+,	VALUE2
+)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (insert_statement
+    (alias
+      (identifier)
+      (identifier))
+    (identifier)
+    (identifier)
+    (values_clause
+      (values_clause_item
+        (identifier)
+        (identifier)))))
