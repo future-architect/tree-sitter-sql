@@ -965,10 +965,11 @@ module.exports = grammar({
     _update_statement: $ =>
       seq(
         kw("UPDATE"),
-        $.identifier,
+        $._aliasable_identifier,
         $.set_clause,
         optional($.from_clause),
         optional($.where_clause),
+        optional($.returning_clause),
       ),
     set_clause: $ => seq(kw("SET"), $.set_clause_body),
     set_clause_body: $ => seq(commaSep1($.assigment_expression)),
@@ -979,10 +980,20 @@ module.exports = grammar({
       seq(
         kw("INSERT"),
         kw("INTO"),
-        $._identifier,
+        $._aliasable_identifier,
         optional(seq("(", commaSep1($._identifier), ")")),
         choice($.values_clause, $.select_statement, $.set_clause),
+        optional($.returning_clause),
       ),
+    
+    _aliased_identifier: $ =>
+      seq(
+        $._identifier,
+        optional(kw("AS")),
+        $.identifier,
+      ),
+    _aliasable_identifier: $ => choice($.identifier, alias($._aliased_identifier, $.alias)),
+
     values_clause: $ =>
       seq(
         kw("VALUES"),
@@ -994,10 +1005,12 @@ module.exports = grammar({
       ),
     values_clause_item: $ => seq("(", commaSep1($._expression), ")"),
 
+    returning_clause: $ => seq(kw("RETURNING"), commaSep1($._aliasable_expression)),
+
     // DELETE
     // TODO: support returning clauses
     _delete_statement: $ =>
-      seq(kw("DELETE"), $.from_clause, optional($.where_clause)),
+      seq(kw("DELETE"), $.from_clause, optional($.where_clause), optional($.returning_clause)),
 
     conditional_expression: $ =>
       seq(
