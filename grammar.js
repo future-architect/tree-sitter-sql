@@ -972,7 +972,20 @@ module.exports = grammar({
         optional($.returning_clause),
       ),
     set_clause: $ => seq(kw("SET"), $.set_clause_body),
-    set_clause_body: $ => seq(commaSep1($.assigment_expression)),
+    set_clause_body: $ => seq(commaSep1($._set_clause_body_item)),
+    _set_clause_body_item: $ => choice(
+      $.assigment_expression,
+      $._column_list_assignment_expression
+    ),
+    // column-list syntax
+    _column_list_assignment_expression: $ => seq(
+      "(", commaSep1($._identifier), ")",
+      "=",
+      choice(
+        seq(optional(kw("ROW")), "(", commaSep1($._expression), ")"),
+        $.select_subexpression
+      )
+    ),
     assigment_expression: $ => seq($._identifier, "=", $._expression),
 
     // INSERT
