@@ -171,3 +171,37 @@ WHERE
           (identifier))
         right: (number)))))
 
+================================================================================
+UPDATE SET column-list
+================================================================================
+
+UPDATE weather SET (temp_lo, temp_hi, prcp) = (temp_lo+1, temp_lo+15, DEFAULT)
+  WHERE city = 'San Francisco' AND date = '2003-07-03';
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (update_statement
+    (identifier)
+    (set_clause
+      (set_clause_body
+        (identifier)
+        (identifier)
+        (identifier)
+        (binary_expression
+          left: (identifier)
+          right: (number))
+        (binary_expression
+          left: (identifier)
+          right: (number))
+        (identifier)))
+    (where_clause
+      (boolean_expression
+        (binary_expression
+          left: (identifier)
+          right: (string
+            content: (content)))
+        (binary_expression
+          left: (identifier)
+          right: (string
+            content: (content)))))))
