@@ -14,11 +14,6 @@
 ([
   (type_cast
    (type (identifier) @type.builtin))
-  (create_function_statement
-   (type (identifier) @type.builtin))
-  (create_function_statement
-   (create_function_parameters
-     (create_function_parameter (type (identifier) @type.builtin))))
   (create_type_statement
     (type_spec_composite (type (identifier) @type.builtin)))
   (create_table_statement
@@ -70,7 +65,6 @@
   "AUTO_INCREMENT"
   "CREATE"
   "CREATE_DOMAIN"
-  "CREATE_OR_REPLACE_FUNCTION"
   "CREATE_SCHEMA"
   "TABLE"
   "TEMPORARY"
@@ -96,7 +90,6 @@
   "OUTER"
   "PRIMARY_KEY"
   "PUBLIC"
-  "RETURNS"
   "SCHEMA"
   "SELECT"
   "SESSION"
