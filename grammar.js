@@ -31,25 +31,15 @@ function kw(keyword) {
     throw new Error(`Expected upper case keyword got ${keyword}`);
   }
   const words = keyword.split(" ");
-  const regExps = words.map(createCaseInsensitiveRegex);
+  const regExps = words.map(createReserved);
 
   return regExps.length == 1
     ? alias(regExps[0], keyword)
     : alias(seq(...regExps), keyword.replace(/ /g, "_"));
 }
 
-function createOrReplace(item) {
-  if (item.toUpperCase() != item) {
-    throw new Error(`Expected upper case item got ${item}`);
-  }
-  return alias(
-    seq(
-      createCaseInsensitiveRegex("CREATE"),
-      field("replace", optional(createCaseInsensitiveRegex("OR REPLACE"))),
-      createCaseInsensitiveRegex(item),
-    ),
-    `CREATE_OR_REPLACE_${item}`,
-  );
+function createReserved(word) {
+  return token(prec(1, createCaseInsensitiveRegex(word)))
 }
 
 function createCaseInsensitiveRegex(word) {
@@ -79,6 +69,8 @@ module.exports = grammar({
     $._dollar_quoted_string_end_tag,
   ],
 
+  word: $ => $._unquoted_identifier,
+
   rules: {
     source_file: $ => repeat($._statement),
 
@@ -106,8 +98,6 @@ module.exports = grammar({
           $.create_schema_statement,
           $.create_role_statement,
           $.create_extension_statement,
-          $.create_trigger_statement,
-          $.create_function_statement,
           $.comment_statement,
           $.create_view_statement,
           $.create_materialized_view_statement,
@@ -224,7 +214,7 @@ module.exports = grammar({
     alter_owner_action: $ =>
       seq(
         kw("OWNER TO"),
-        choice($._identifier, "CURRENT_USER", "CURRENT_ROLE", "SESSION_USER"),
+        choice($._identifier, kw("CURRENT_USER"), kw("CURRENT_ROLE"), kw("SESSION_USER")),
       ),
     alter_schema: $ =>
       seq(
@@ -300,163 +290,12 @@ module.exports = grammar({
     declare_statement: $ =>
       seq(kw("DECLARE"), $.identifier, $._type, optional($.default_clause)),
 
-    create_function_statement: $ =>
-      prec.right(
-        seq(
-          choice(createOrReplace("FUNCTION"), createOrReplace("PROCEDURE")),
-          $._identifier,
-          $.create_function_parameters,
-          optional(seq(kw("RETURNS"), $._create_function_return_type)),
-          repeat(
-            choice(
-              $._function_language,
-              seq(kw("TRANSFORM FOR TYPE"), commaSep1($.identifier)),
-              kw("WINDOW"),
-              seq(optional(kw("NOT")), kw("LEAKPROOF")),
-              seq(kw("COST"), $.number),
-              seq(kw("ROWS"), $.number),
-              seq(kw("SUPPORT"), $.identifier),
-              $.external_hint,
-              $.optimizer_hint,
-              $.parallel_hint,
-              $.null_hint,
-              $.deterministic_hint,
-              $.sql_hint,
-              $.sql_security_hint,
-              $.function_body,
-            ),
-          ),
-        ),
-      ),
-    external_hint: $ =>
-      choice(
-        seq(optional(kw("EXTERNAL")), kw("SECURITY INVOKER")),
-        seq(optional(kw("EXTERNAL")), kw("SECURITY DEFINER")),
-      ),
-    optimizer_hint: $ => choice(kw("VOLATILE"), kw("IMMUTABLE"), kw("STABLE")),
-    parallel_hint: $ =>
-      seq(kw("PARALLEL"), choice(kw("SAFE"), kw("UNSAFE"), kw("RESTRICTED"))),
-    null_hint: $ =>
-      choice(
-        kw("CALLED ON NULL INPUT"),
-        kw("RETURNS NULL ON NULL INPUT"),
-        kw("STRICT"),
-      ),
-    // MySQL hints
-    deterministic_hint: $ => seq(optional(kw("NOT")), kw("DETERMINISTIC")),
-    sql_hint: $ =>
-      choice(
-        kw("CONTAINS SQL"),
-        kw("NO SQL"),
-        kw("READS SQL DATA"),
-        kw("MODIFIES SQL DATA"),
-      ),
-    sql_security_hint: $ =>
-      seq(kw("SQL SECURITY"), choice(kw("DEFINER"), kw("INVOKER"))),
-
     _function_language: $ =>
       seq(
         kw("LANGUAGE"),
         alias(choice(/[a-zA-Z]+/, /'[a-zA-Z]+'/), $.language),
       ),
-    _create_function_return_type: $ =>
-      prec.right(choice($.setof, $._type, $.constrained_type)),
-    setof: $ =>
-      prec.right(seq(kw("SETOF"), choice($._type, $.constrained_type))),
     constrained_type: $ => seq($._type, $.null_constraint),
-    create_function_parameter: $ =>
-      seq(
-        field(
-          "argmode",
-          optional(choice(kw("IN"), kw("OUT"), kw("INOUT"), kw("VARIADIC"))),
-        ),
-        optional($.identifier),
-        choice($._type, $.constrained_type),
-        optional(seq("=", alias($._expression, $.default))),
-      ),
-    create_function_parameters: $ =>
-      seq("(", optional(commaSep1($.create_function_parameter)), ")"),
-
-    function_body: $ =>
-      choice(
-        $._simple_statement,
-        $._compound_statement,
-        seq(kw("AS"), field("script", $.string)),
-        seq(
-          kw("AS"),
-          field("obj_file", $.string),
-          field("link_symbol", $.string),
-        ),
-      ),
-
-    create_trigger_statement: $ =>
-      seq(
-        kw("CREATE"),
-        optional(kw("OR REPLACE")),
-        optional(kw("CONSTRAINT")),
-        kw("TRIGGER"),
-        optional(kw("IF NOT EXISTS")),
-        field("name", $.identifier),
-        $.trigger_time,
-        $.trigger_event,
-        kw("ON"),
-        field("on_table", $._identifier),
-        optional($.trigger_reference),
-        optional($.trigger_preferencing),
-        optional(
-          seq(
-            kw("FOR"),
-            optional(kw("EACH")),
-            choice(kw("ROW"), kw("STATEMENT")),
-          ),
-        ),
-        optional($.trigger_condition),
-        optional($.trigger_order),
-        $.trigger_body,
-      ),
-    trigger_reference: $ => seq(kw("FROM"), $._identifier),
-    trigger_preferencing: $ =>
-      seq(
-        kw("REFERENCING"),
-        repeat1(
-          seq(
-            choice(kw("NEW"), kw("OLD")),
-            kw("TABLE"),
-            optional(kw("AS")),
-            $.identifier,
-          ),
-        ),
-      ),
-    trigger_time: $ => choice(kw("BEFORE"), kw("AFTER"), kw("INSTEAD OF")),
-    trigger_event: $ =>
-      choice(
-        kw("INSERT"),
-        kw("DELETE"),
-        kw("TRUNCATE"),
-        seq(kw("UPDATE"), optional(seq(kw("OF"), repeat1($._identifier)))),
-      ),
-    // PostgreSQL trigger condition
-    trigger_condition: $ => seq(kw("WHEN"), $._expression),
-    // MySQL trigger order
-    trigger_order: $ =>
-      seq(choice(kw("FOLLOWS"), kw("PRECEDES")), $._identifier),
-    trigger_body: $ =>
-      choice(
-        // PostgreSQL style trigger body
-        seq(
-          kw("EXECUTE"),
-          choice(kw("FUNCTION"), kw("PROCEDURE")),
-          seq(
-            field("function", $.identifier),
-            "(",
-            optional(field("arguments", commaSep1($.string))),
-            ")",
-          ),
-        ),
-        // MySQL style trigger body
-        $._simple_statement,
-        $._compound_statement,
-      ),
 
     create_extension_statement: $ =>
       prec.right(

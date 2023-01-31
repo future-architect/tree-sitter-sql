@@ -27,9 +27,10 @@ LEFT OUTER JOIN t7 ON t.a = t7.a;
           (identifier)
           (identifier))
         (alias
-          (interval_expression
-            (string
-              (content)))
+          (parenthesized_expression
+            (interval_expression
+              (string
+                (content))))
           (identifier))))
     (from_clause
       (alias
@@ -37,23 +38,25 @@ LEFT OUTER JOIN t7 ON t.a = t7.a;
         (identifier)))
     (join_clause
       (identifier)
-      (binary_expression
-        (dotted_name
-          (identifier)
-          (identifier))
-        (dotted_name
-          (identifier)
-          (identifier))))
+      (parenthesized_expression
+        (binary_expression
+          (dotted_name
+            (identifier)
+            (identifier))
+          (dotted_name
+            (identifier)
+            (identifier)))))
     (join_clause
       (join_type)
       (identifier)
-      (binary_expression
-        (dotted_name
-          (identifier)
-          (identifier))
-        (dotted_name
-          (identifier)
-          (identifier))))
+      (parenthesized_expression
+        (binary_expression
+          (dotted_name
+            (identifier)
+            (identifier))
+          (dotted_name
+            (identifier)
+            (identifier)))))
     (join_clause
       (join_type)
       (identifier)
