@@ -71,6 +71,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -80,6 +84,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -413,6 +421,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -422,6 +434,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -563,6 +579,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -572,6 +592,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -693,6 +717,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -702,6 +730,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -819,6 +851,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -828,6 +864,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -936,6 +976,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -945,6 +989,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -1043,6 +1091,10 @@
             "named": true
           },
           {
+            "type": "exists_subquery_expression",
+            "named": true
+          },
+          {
             "type": "function_call",
             "named": true
           },
@@ -1052,6 +1104,10 @@
           },
           {
             "type": "in_expression",
+            "named": true
+          },
+          {
+            "type": "in_subquery_expression",
             "named": true
           },
           {
@@ -1239,6 +1295,10 @@
             "named": true
           },
           {
+            "type": "exists_subquery_expression",
+            "named": true
+          },
+          {
             "type": "function_call",
             "named": true
           },
@@ -1248,6 +1308,10 @@
           },
           {
             "type": "in_expression",
+            "named": true
+          },
+          {
+            "type": "in_subquery_expression",
             "named": true
           },
           {
@@ -1352,6 +1416,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -1361,6 +1429,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -1494,6 +1566,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -1503,6 +1579,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -1601,6 +1681,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -1610,6 +1694,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -1782,6 +1870,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -1791,6 +1883,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -2060,6 +2156,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -2069,6 +2169,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -2425,6 +2529,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "expression_list",
           "named": true
         },
@@ -2438,6 +2546,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -2568,6 +2680,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -2577,6 +2693,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -2758,6 +2878,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -2767,6 +2891,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -2947,6 +3075,21 @@
     }
   },
   {
+    "type": "exists_subquery_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "select_subexpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "expression_list",
     "named": true,
     "fields": {},
@@ -3003,6 +3146,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -3012,6 +3159,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -3159,6 +3310,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -3168,6 +3323,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -3320,6 +3479,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -3329,6 +3492,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -3439,6 +3606,10 @@
             "named": true
           },
           {
+            "type": "exists_subquery_expression",
+            "named": true
+          },
+          {
             "type": "function_call",
             "named": true
           },
@@ -3448,6 +3619,10 @@
           },
           {
             "type": "in_expression",
+            "named": true
+          },
+          {
+            "type": "in_subquery_expression",
             "named": true
           },
           {
@@ -3648,6 +3823,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -3661,6 +3840,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -3778,6 +3961,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -3787,6 +3974,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -3890,6 +4081,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -3899,6 +4094,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -3931,6 +4130,121 @@
         },
         {
           "type": "tuple",
+          "named": true
+        },
+        {
+          "type": "type_cast",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "in_subquery_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "FALSE",
+          "named": true
+        },
+        {
+          "type": "NULL",
+          "named": true
+        },
+        {
+          "type": "TRUE",
+          "named": true
+        },
+        {
+          "type": "argument_reference",
+          "named": true
+        },
+        {
+          "type": "array_element_access",
+          "named": true
+        },
+        {
+          "type": "asterisk_expression",
+          "named": true
+        },
+        {
+          "type": "at_time_zone_expression",
+          "named": true
+        },
+        {
+          "type": "between_and_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_expression",
+          "named": true
+        },
+        {
+          "type": "conditional_expression",
+          "named": true
+        },
+        {
+          "type": "dotted_name",
+          "named": true
+        },
+        {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
+          "named": true
+        },
+        {
+          "type": "interval_expression",
+          "named": true
+        },
+        {
+          "type": "is_expression",
+          "named": true
+        },
+        {
+          "type": "json_access",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "select_subexpression",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         },
         {
@@ -4001,6 +4315,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -4010,6 +4328,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -4202,6 +4524,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -4211,6 +4537,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -4313,6 +4643,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -4322,6 +4656,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -4429,6 +4767,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -4438,6 +4780,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -4721,6 +5067,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -4730,6 +5080,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -4843,6 +5197,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -4852,6 +5210,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -4988,6 +5350,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -4997,6 +5363,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -5095,6 +5465,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -5104,6 +5478,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -5312,6 +5690,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -5321,6 +5703,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -5427,6 +5813,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -5436,6 +5826,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -5539,6 +5933,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "expression_list",
           "named": true
         },
@@ -5552,6 +5950,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -5707,6 +6109,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -5716,6 +6122,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -5922,6 +6332,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -5931,6 +6345,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -6044,6 +6462,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -6053,6 +6475,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -6545,6 +6971,10 @@
             "named": true
           },
           {
+            "type": "exists_subquery_expression",
+            "named": true
+          },
+          {
             "type": "function_call",
             "named": true
           },
@@ -6554,6 +6984,10 @@
           },
           {
             "type": "in_expression",
+            "named": true
+          },
+          {
+            "type": "in_subquery_expression",
             "named": true
           },
           {
@@ -6926,6 +7360,10 @@
             "named": true
           },
           {
+            "type": "exists_subquery_expression",
+            "named": true
+          },
+          {
             "type": "function_call",
             "named": true
           },
@@ -6935,6 +7373,10 @@
           },
           {
             "type": "in_expression",
+            "named": true
+          },
+          {
+            "type": "in_subquery_expression",
             "named": true
           },
           {
@@ -7178,6 +7620,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -7187,6 +7633,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {
@@ -7386,6 +7836,10 @@
           "named": true
         },
         {
+          "type": "exists_subquery_expression",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -7395,6 +7849,10 @@
         },
         {
           "type": "in_expression",
+          "named": true
+        },
+        {
+          "type": "in_subquery_expression",
           "named": true
         },
         {

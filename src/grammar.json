@@ -12690,6 +12690,101 @@
         }
       ]
     },
+    "_subquery_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "exists_subquery_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "in_subquery_expression"
+        }
+      ]
+    },
+    "exists_subquery_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 1,
+              "content": {
+                "type": "PATTERN",
+                "value": "[eE][xX][iI][sS][tT][sS]"
+              }
+            }
+          },
+          "named": false,
+          "value": "EXISTS"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "select_subexpression"
+        }
+      ]
+    },
+    "in_subquery_expression": {
+      "type": "PREC_LEFT",
+      "value": 3,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "TOKEN",
+                  "content": {
+                    "type": "PREC",
+                    "value": 1,
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[nN][oO][tT]"
+                    }
+                  }
+                },
+                "named": false,
+                "value": "NOT"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "PREC",
+                "value": 1,
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[iI][nN]"
+                }
+              }
+            },
+            "named": false,
+            "value": "IN"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "select_subexpression"
+          }
+        ]
+      }
+    },
     "binary_operator": {
       "type": "CHOICE",
       "members": [
@@ -12868,6 +12963,10 @@
         {
           "type": "SYMBOL",
           "name": "at_time_zone_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_subquery_expression"
         }
       ]
     }
