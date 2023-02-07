@@ -1294,3 +1294,31 @@ WHERE col1 IN
                 (dotted_name
                   (identifier)
                   (identifier))))))))))
+
+================================================================================
+SELECT statement with ALL expression
+================================================================================
+
+SELECT col1
+FROM tab1
+WHERE col1 <> ALL (SELECT col1 from tab2)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (identifier)))
+    (from_clause
+      (identifier))
+    (where_clause
+      (all_some_any_subquery_expression
+        (identifier)
+        (select_subexpression
+          (select_statement
+            (select_clause
+              (select_clause_body
+                (identifier)))
+            (from_clause
+              (identifier))))))))
