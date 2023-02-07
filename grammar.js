@@ -1124,28 +1124,6 @@ module.exports = grammar({
       );
     },
 
-    // https://www.postgresql.org/docs/current/functions-subquery.html
-    _subquery_expression: $ => choice(
-      $.exists_subquery_expression,
-      $.in_subquery_expression,
-      $.all_some_any_subquery_expression,
-    ),
-
-    exists_subquery_expression: $ => seq(kw("EXISTS"), $.select_subexpression),
-    in_subquery_expression: $ =>
-      prec.left(
-        PREC.comparative,
-        seq($._expression, optional(kw("NOT")), kw("IN"), $.select_subexpression),
-      ),
-    all_some_any_subquery_expression: $ =>
-      prec.left(
-        PREC.comparative,
-        seq($._expression,
-            choice(...comparative_operators),
-            choice(kw("ALL"), kw("SOME"), kw("ANY")),
-            $.select_subexpression)
-      ),
-    
     binary_operator: $ => choice("=", "&&", "||"),
     asterisk_expression: $ => choice("*", seq($._identifier, ".*")),
     interval_expression: $ => seq(token(prec(1, kw("INTERVAL"))), $.string),
@@ -1175,7 +1153,6 @@ module.exports = grammar({
         $.argument_reference,
         $.select_subexpression,
         $.at_time_zone_expression,
-        $._subquery_expression,
       ),
   },
 });
