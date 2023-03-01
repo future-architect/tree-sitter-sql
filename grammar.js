@@ -9,7 +9,7 @@ const PREC = {
   or: 1,
 };
 const multiplicative_operators = ["*", "/", "%", "<<", ">>", "&"];
-const additive_operators = ["+", "-", "|", "#"];
+const additive_operators = ["+", "-", "|", "#", "||"];
 const comparative_operators = [
   "<",
   "<=",
@@ -22,6 +22,7 @@ const comparative_operators = [
   "!~",
   "~*",
   "!~*",
+  "||", // concat
 ];
 
 // Generate case insentitive match for SQL keyword
@@ -867,6 +868,7 @@ module.exports = grammar({
     conditional_expression: $ =>
       seq(
         kw("CASE"),
+        optional($._expression),
         repeat1(seq(kw("WHEN"), $._expression, kw("THEN"), $._expression)),
         optional(seq(kw("ELSE"), $._expression)),
         kw("END"),
@@ -1062,17 +1064,32 @@ module.exports = grammar({
       prec.right(seq($._type, repeat1(seq("[", optional($.number), "]")))),
     _type: $ => choice($.type, $.array_type),
     type_cast: $ =>
-      seq(
-        // TODO: should be moved to basic expression or something
-        choice(
-          $.parenthesized_expression,
-          $.string,
-          $._identifier,
-          $.function_call,
+      choice(
+        // exprssion :: type
+        seq(
+          // TODO: should be moved to basic expression or something
+          $._cast_expression,
+          "::",
+          field("type", $._type),
         ),
-        "::",
-        field("type", $._type),
+        // CAST( expression AS type )
+        seq(
+          kw("CAST"),
+          "(",
+          $._cast_expression,
+          kw("AS"),
+          field("type", $._type),
+          ")"
+        )
       ),
+
+    _cast_expression: $ => choice(
+      $.number,
+      $.parenthesized_expression,
+      $.string,
+      $._identifier,
+      $.function_call,
+    ),
 
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
     comment: $ =>
