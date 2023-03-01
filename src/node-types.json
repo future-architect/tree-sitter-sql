@@ -1380,6 +1380,10 @@
             "named": false
           },
           {
+            "type": "||",
+            "named": false
+          },
+          {
             "type": "~",
             "named": false
           },
@@ -7364,6 +7368,10 @@
           "named": true
         },
         {
+          "type": "number",
+          "named": true
+        },
+        {
           "type": "parenthesized_expression",
           "named": true
         },
@@ -8467,6 +8475,10 @@
   },
   {
     "type": "CASE",
+    "named": false
+  },
+  {
+    "type": "CAST",
     "named": false
   },
   {

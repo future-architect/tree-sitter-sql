@@ -318,6 +318,11 @@ SELECT statement with type cast
 ================================================================================
 
 SELECT ''::JSONB;
+SELECT CAST('' AS JSONB);
+SELECT 100::CHAR(3)
+SELECT CAST(100 AS CHAR(3))
+SELECT CAST((1 + 2) AS CHAR(1))
+
 
 --------------------------------------------------------------------------------
 
@@ -329,7 +334,42 @@ SELECT ''::JSONB;
           (string
             (content))
           (type
-            (identifier)))))))
+            (identifier))))))
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (type_cast
+          (string
+            (content))
+          (type
+            (identifier))))))
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (type_cast
+          (number)
+          (type
+            (identifier)
+            (number))))))
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (type_cast
+          (number)
+          (type
+            (identifier)
+            (number))))))
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (type_cast
+          (parenthesized_expression
+            (binary_expression
+              (number)
+              (number)))
+          (type
+            (identifier)
+            (number)))))))
 
 ================================================================================
 SELECT statement with columns
@@ -2147,6 +2187,37 @@ FROM foo;
       (identifier))))
 
 ================================================================================
+Simple CASE
+================================================================================
+
+SELECT a,
+  CASE a WHEN 1 THEN 'one'
+      WHEN 2 THEN 'two'
+      ELSE 'other'
+  END
+FROM foo;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (identifier)
+        (conditional_expression
+          (identifier)
+          (number)
+          (string
+            (content))
+          (number)
+          (string
+            (content))
+          (string
+            (content)))))
+    (from_clause
+      (identifier))))
+
+================================================================================
 Escaping quotes
 ================================================================================
 
@@ -2345,3 +2416,24 @@ TRUNCATE mytable1, mytable1, "My Table 3";
     (identifier)
     (identifier)
     (identifier)))
+
+================================================================================
+String concatination
+================================================================================
+
+SELECT 'Hello' || ', World' || '!';
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (binary_expression
+          (binary_expression
+            (string
+              (content))
+            (string
+              (content)))
+          (string
+            (content)))))))
