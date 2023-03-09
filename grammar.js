@@ -781,23 +781,35 @@ module.exports = grammar({
       prec.right(seq(kw("SELECT"), optional($.select_clause_body))),
     from_clause: $ => seq(kw("FROM"), commaSep1($._aliasable_expression)),
     join_type: $ =>
-      seq(
-        choice(
-          kw("INNER"),
-          seq(
-            choice(kw("LEFT"), kw("RIGHT"), kw("FULL")),
-            optional(kw("OUTER")),
+      choice(
+        // cross join
+        kw("CROSS"),
+        // qualified joins
+        seq(
+          optional(kw("NATURAL")),
+          choice(
+            kw("INNER"),
+            seq(
+              choice(kw("LEFT"), kw("RIGHT"), kw("FULL")),
+              optional(kw("OUTER")),
+            ),
           ),
-        ),
+        )
       ),
     join_clause: $ =>
       seq(
         optional($.join_type),
         kw("JOIN"),
         $._aliasable_expression,
-        kw("ON"),
-        $._expression,
+        optional($._join_condition)
       ),
+
+    _join_condition: $ =>
+      choice(
+        seq(kw("ON"), $._expression),
+        seq(kw("USING"), "(", commaSep1($.identifier), ")")
+      ),  
+
     select_subexpression: $ =>
       prec(1, seq(optional(kw("LATERAL")), "(", $.select_statement, ")")),
 
