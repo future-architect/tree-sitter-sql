@@ -8538,6 +8538,10 @@
     "named": false
   },
   {
+    "type": "CROSS",
+    "named": false
+  },
+  {
     "type": "CUBE",
     "named": false
   },
@@ -8799,6 +8803,10 @@
   },
   {
     "type": "MINVALUE",
+    "named": false
+  },
+  {
+    "type": "NATURAL",
     "named": false
   },
   {
