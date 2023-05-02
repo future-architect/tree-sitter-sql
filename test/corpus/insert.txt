@@ -369,3 +369,148 @@ INTO
       (values_clause_item
         (identifier)
         (identifier)))))
+
+================================================================================
+INSERT statement with ON CONFLICT (UPSERT)
+================================================================================
+
+INSERT INTO distributors (did, dname)
+    VALUES (5, 'Gizmo Transglobal'), (6, 'Associated Computing, Inc')
+    ON CONFLICT (did) DO UPDATE SET dname = EXCLUDED.dname;
+INSERT INTO distributors (did, dname) VALUES (7, 'Redline GmbH')
+    ON CONFLICT (did) DO NOTHING;
+INSERT INTO distributors AS d (did, dname) VALUES (8, 'Anvil Distribution')
+    ON CONFLICT (did) DO UPDATE
+    SET dname = EXCLUDED.dname || ' (formerly ' || d.dname || ')'
+    WHERE d.zipcode <> '21201';
+INSERT INTO distributors (did, dname) VALUES (9, 'Antwerp Design')
+    ON CONFLICT ON CONSTRAINT distributors_pkey DO NOTHING;
+INSERT INTO distributors (did, dname) VALUES (10, 'Conrad International')
+    ON CONFLICT (did) WHERE is_active DO NOTHING;
+INSERT INTO distributors (did, dname) VALUES (7, 'Redline GmbH')
+    ON CONFLICT (did) COLLATE "x" int4_ops DO NOTHING;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (insert_statement
+    (identifier)
+    (identifier)
+    (identifier)
+    (values_clause
+      (values_clause_item
+        (number)
+        (string
+          content: (content)))
+      (values_clause_item
+        (number)
+        (string
+          content: (content))))
+    (on_conflict_clause
+      (conflict_target
+        (identifier))
+      (conflict_action
+        (set_clause
+          (set_clause_body
+            (assigment_expression
+              (identifier)
+              (dotted_name
+                (identifier)
+                (identifier))))))))
+  (insert_statement
+    (identifier)
+    (identifier)
+    (identifier)
+    (values_clause
+      (values_clause_item
+        (number)
+        (string
+          content: (content))))
+    (on_conflict_clause
+      (conflict_target
+        (identifier))
+      (conflict_action)))
+  (insert_statement
+    (alias
+      (identifier)
+      (identifier))
+    (identifier)
+    (identifier)
+    (values_clause
+      (values_clause_item
+        (number)
+        (string
+          content: (content))))
+    (on_conflict_clause
+      (conflict_target
+        (identifier))
+      (conflict_action
+        (set_clause
+          (set_clause_body
+            (assigment_expression
+              (identifier)
+              (binary_expression
+                left: (binary_expression
+                  left: (binary_expression
+                    left: (dotted_name
+                      (identifier)
+                      (identifier))
+                    right: (string
+                      content: (content)))
+                  right: (dotted_name
+                    (identifier)
+                    (identifier)))
+                right: (string
+                  content: (content))))))
+        (where_clause
+          (binary_expression
+            left: (dotted_name
+              (identifier)
+              (identifier))
+            right: (string
+              content: (content)))))))
+  (insert_statement
+    (identifier)
+    (identifier)
+    (identifier)
+    (values_clause
+      (values_clause_item
+        (number)
+        (string
+          content: (content))))
+    (on_conflict_clause
+      (conflict_target
+        (identifier))
+      (conflict_action)))
+  (insert_statement
+    (identifier)
+    (identifier)
+    (identifier)
+    (values_clause
+      (values_clause_item
+        (number)
+        (string
+          content: (content))))
+    (on_conflict_clause
+      (conflict_target
+        (identifier)
+        (where_clause
+          (identifier)))
+      (conflict_action)))
+  (insert_statement
+    (identifier)
+    (identifier)
+    (identifier)
+    (values_clause
+      (values_clause_item
+        (number)
+        (string
+          content: (content))))
+    (on_conflict_clause
+      (conflict_target
+        (identifier)
+        (collation
+          (identifier))
+        (op_class
+          (identifier)))
+      (conflict_action))))
