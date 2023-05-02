@@ -797,18 +797,20 @@ module.exports = grammar({
         )
       ),
     join_clause: $ =>
-      seq(
-        optional($.join_type),
-        kw("JOIN"),
-        $._aliasable_expression,
-        optional($._join_condition)
-      ),
+      prec.right(
+        PREC.primary,
+        seq(
+          optional($.join_type),
+          kw("JOIN"),
+          $._aliasable_expression,
+          optional($._join_condition)
+        )),
 
     _join_condition: $ =>
       choice(
         seq(kw("ON"), $._expression),
         seq(kw("USING"), "(", commaSep1($.identifier), ")")
-      ),  
+      ),
 
     select_subexpression: $ =>
       prec(1, seq(optional(kw("LATERAL")), "(", $.select_statement, ")")),
@@ -848,9 +850,35 @@ module.exports = grammar({
         $._aliasable_identifier,
         optional(seq("(", commaSep1($._identifier), ")")),
         choice($.values_clause, $.select_statement, $.set_clause),
+        optional($.on_conflict_clause),
         optional($.returning_clause),
       ),
-    
+
+    // [ ON CONFLICT [ conflict_target ] conflict_action ]
+    on_conflict_clause: $ =>
+      seq(kw("ON CONFLICT"), optional($.conflict_target), $.conflict_action),
+
+    conflict_target: $ =>
+      choice(
+        // ( { index_column_name | ( index_expression ) } [ COLLATE collation ] [ opclass ] [, ...] ) [ WHERE index_predicate ]
+        seq(
+          "(", commaSep1($._expression), ")",
+          optional(seq(kw("COLLATE"), $.collation)),
+          optional($.op_class),
+          optional($.where_clause),
+        ),
+        // ON CONSTRAINT constraint_name
+        seq(kw("ON CONSTRAINT"), $._identifier)
+      ),
+
+    collation: $ => $._identifier,
+
+    conflict_action: $ =>
+      choice(
+        kw("DO NOTHING"),
+        seq(kw("DO UPDATE"), $.set_clause, optional($.where_clause))
+      ),
+
     _aliased_identifier: $ =>
       seq(
         $._identifier,
@@ -1002,9 +1030,9 @@ module.exports = grammar({
       prec.left(
         PREC.comparative,
         seq($._expression, optional(kw("NOT")), kw("BETWEEN"),
-            $._expression, kw("AND"), $._expression)
+          $._expression, kw("AND"), $._expression)
       )
-      ,
+    ,
     boolean_expression: $ =>
       choice(
         prec.left(PREC.unary, seq(kw("NOT"), $._expression)),
@@ -1169,11 +1197,11 @@ module.exports = grammar({
       prec.left(
         PREC.comparative,
         seq($._expression,
-            choice(...comparative_operators),
-            choice(kw("ALL"), kw("SOME"), kw("ANY")),
-            $.select_subexpression)
+          choice(...comparative_operators),
+          choice(kw("ALL"), kw("SOME"), kw("ANY")),
+          $.select_subexpression)
       ),
-    
+
     binary_operator: $ => choice("=", "&&", "||"),
     asterisk_expression: $ => choice("*", seq($._identifier, ".*")),
     interval_expression: $ => seq(token(prec(1, kw("INTERVAL"))), $.string),
