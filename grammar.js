@@ -860,11 +860,15 @@ module.exports = grammar({
 
     conflict_target: $ =>
       choice(
-        // ( { index_column_name | ( index_expression ) } [ COLLATE collation ] [ opclass ] [, ...] ) [ WHERE index_predicate ]
+        // ( index_column_name [ COLLATE collation ] [ opclass ] [, ...] ) [ WHERE index_predicate ]
         seq(
-          "(", commaSep1($._expression), ")",
-          optional(seq(kw("COLLATE"), $.collation)),
-          optional($.op_class),
+          "(",
+          commaSep1(seq(
+            $._expression,
+            optional(seq(kw("COLLATE"), $.collation)),
+            optional($.op_class),
+          )),
+          ")",
           optional($.where_clause),
         ),
         // ON CONSTRAINT constraint_name

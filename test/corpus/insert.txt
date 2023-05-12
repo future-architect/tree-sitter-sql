@@ -388,7 +388,7 @@ INSERT INTO distributors (did, dname) VALUES (9, 'Antwerp Design')
 INSERT INTO distributors (did, dname) VALUES (10, 'Conrad International')
     ON CONFLICT (did) WHERE is_active DO NOTHING;
 INSERT INTO distributors (did, dname) VALUES (7, 'Redline GmbH')
-    ON CONFLICT (did) COLLATE "x" int4_ops DO NOTHING;
+    ON CONFLICT (did1 COLLATE "x" int4_ops, did2 COLLATE "x" int4_ops) DO NOTHING;
 
 --------------------------------------------------------------------------------
 
@@ -508,6 +508,11 @@ INSERT INTO distributors (did, dname) VALUES (7, 'Redline GmbH')
           content: (content))))
     (on_conflict_clause
       (conflict_target
+        (identifier)
+        (collation
+          (identifier))
+        (op_class
+          (identifier))
         (identifier)
         (collation
           (identifier))
