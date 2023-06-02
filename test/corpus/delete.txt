@@ -29,12 +29,32 @@ WITH t AS (
 )
 DELETE FROM bar;
 
+WITH RECURSIVE search_tree(id, link, data) AS NOT MATERIALIZED(
+    SELECT * FROM foo
+)
+DELETE FROM bar;
+
 --------------------------------------------------------------------------------
 
 (source_file
   (delete_statement
     (with_clause
       (cte
+        (identifier)
+        (select_statement
+          (select_clause
+            (select_clause_body
+              (asterisk_expression)))
+          (from_clause
+            (identifier)))))
+    (from_clause
+      (identifier)))
+  (delete_statement
+    (with_clause
+      (cte
+        (identifier)
+        (identifier)
+        (identifier)
         (identifier)
         (select_statement
           (select_clause
