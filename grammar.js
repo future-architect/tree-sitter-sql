@@ -142,6 +142,14 @@ module.exports = grammar({
     cte: $ =>
       seq(
         $.identifier,
+        // カラム宣言
+        optional(
+          seq(
+            "(",
+            commaSep1($.identifier),
+            ")"
+          )
+        ),
         kw("AS"),
         optional(seq(optional(kw("NOT")), kw("MATERIALIZED"))),
         "(",
