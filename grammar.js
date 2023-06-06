@@ -786,7 +786,16 @@ module.exports = grammar({
         ),
       ),
     select_clause: $ =>
-      prec.right(seq(kw("SELECT"), optional($.select_clause_body))),
+      prec.right(seq(
+        kw("SELECT"),
+        optional(choice(
+          kw("ALL"),
+          seq(
+            kw("DISTINCT"),
+            optional(seq(kw("ON"), "(", commaSep($._expression), ")"))
+        ))),
+        optional($.select_clause_body)
+      )),
     from_clause: $ => seq(kw("FROM"), commaSep1($._aliasable_expression)),
     join_type: $ =>
       choice(
