@@ -1385,3 +1385,46 @@ WHERE col1 <> ALL (SELECT col1 from tab2)
                 (identifier)))
             (from_clause
               (identifier))))))))
+
+================================================================================
+SELECT statement with DISTINCT ON clause
+================================================================================
+
+SELECT DISTINCT ON (location) location, time, report
+    FROM weather_reports
+    ORDER BY location, time DESC;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (identifier)
+      (select_clause_body
+        (identifier)
+        (identifier)
+        (identifier)))
+    (from_clause
+      (identifier))
+    (order_by_clause
+      (order_expression
+        (identifier))
+      (order_expression
+        (identifier)))))
+
+================================================================================
+SELECT statement with DISTINCT clause
+================================================================================
+
+SELECT DISTINCT id
+    FROM students;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (identifier)))
+    (from_clause
+      (identifier))))
