@@ -1428,3 +1428,132 @@ SELECT DISTINCT id
         (identifier)))
     (from_clause
       (identifier))))
+
+================================================================================
+SELECT statement with LIKE clause
+================================================================================
+
+SELECT
+  *
+FROM
+  students
+WHERE 1=1
+AND name like '%taro%'
+;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (asterisk_expression)))
+    (from_clause
+      (identifier))
+    (where_clause
+      (boolean_expression
+        (binary_expression
+          (number)
+          (number))
+        (like_expression
+          (identifier)
+          (string
+            (content)))))))
+
+================================================================================
+SELECT statement with LIKE clause and concatenation operator
+================================================================================
+
+SELECT
+  *
+FROM
+  students
+WHERE 1=1
+AND name || 'x' like '%taro%'
+;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (asterisk_expression)))
+    (from_clause
+      (identifier))
+    (where_clause
+      (boolean_expression
+        (binary_expression
+          (number)
+          (number))
+        (like_expression
+          (binary_expression
+            (identifier)
+            (string
+              (content)))
+          (string
+            (content)))))))
+
+================================================================================
+SELECT statement with ESCAPE clause
+================================================================================
+
+SELECT
+  *
+FROM
+  students
+WHERE 1=1
+AND name like '%taro%' ESCAPE '$'
+;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (asterisk_expression)))
+    (from_clause
+      (identifier))
+    (where_clause
+      (boolean_expression
+        (binary_expression
+          (number)
+          (number))
+        (like_expression
+          (identifier)
+          (string
+            (content))
+          (string
+            (content)))))))
+
+================================================================================
+SELECT statement with NOT LIKE clause
+================================================================================
+
+SELECT
+  *
+FROM
+  students
+WHERE 1=1
+AND name not like '%taro%'
+;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (asterisk_expression)))
+    (from_clause
+      (identifier))
+    (where_clause
+      (boolean_expression
+        (binary_expression
+          (number)
+          (number))
+        (like_expression
+          (identifier)
+          (string
+            (content)))))))

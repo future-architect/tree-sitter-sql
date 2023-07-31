@@ -1054,6 +1054,11 @@ module.exports = grammar({
           $._expression, kw("AND"), $._expression)
       )
     ,
+    like_expression: $ =>
+      prec.left(
+        PREC.comparative,
+        seq($._expression, optional(kw("NOT")), kw("LIKE"), $._expression, optional(seq(kw("ESCAPE"), $._expression)))
+      ),
     boolean_expression: $ =>
       choice(
         prec.left(PREC.unary, seq(kw("NOT"), $._expression)),
@@ -1242,6 +1247,7 @@ module.exports = grammar({
         $.in_expression,
         $.is_expression,
         $.between_and_expression,
+        $.like_expression,
         $.boolean_expression,
         $.parenthesized_expression,
         $.type_cast,
