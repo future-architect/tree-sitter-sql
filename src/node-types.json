@@ -3652,26 +3652,6 @@
     }
   },
   {
-    "type": "for_update_clause",
-    "named": true,
-    "fields": {
-      "table_name": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "dotted_name",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "foreign_key",
     "named": true,
     "fields": {},
@@ -7023,10 +7003,6 @@
       "required": true,
       "types": [
         {
-          "type": "for_update_clause",
-          "named": true
-        },
-        {
           "type": "from_clause",
           "named": true
         },
@@ -9294,10 +9270,6 @@
     "named": false
   },
   {
-    "type": "FOR_UPDATE",
-    "named": false
-  },
-  {
     "type": "FROM",
     "named": false
   },
@@ -9463,10 +9435,6 @@
   },
   {
     "type": "NULLS",
-    "named": false
-  },
-  {
-    "type": "OF",
     "named": false
   },
   {
