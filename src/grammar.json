@@ -8617,6 +8617,30 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PREC",
+                  "value": 1,
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[nN][oO][wW][aA][iI][tT]"
+                  }
+                }
+              },
+              "named": false,
+              "value": "NOWAIT"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
