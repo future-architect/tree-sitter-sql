@@ -1583,3 +1583,29 @@ for update of tbl, tbl2;
     (for_update_clause
       (identifier)
       (identifier))))
+
+================================================================================
+SELECT FOR UPDATE with NOWAIT
+================================================================================
+
+select * from employee
+where ID = '1'
+for update of test1, test2 nowait;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (asterisk_expression)))
+    (from_clause
+      (identifier))
+    (where_clause
+      (binary_expression
+        (identifier)
+        (string
+          (content))))
+    (for_update_clause
+      (identifier)
+      (identifier))))

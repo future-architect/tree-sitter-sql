@@ -765,6 +765,7 @@ module.exports = grammar({
       seq(
         kw("FOR UPDATE"),
         optional(seq(kw("OF"), commaSep1(field("table_name", $._identifier)))),
+        optional(kw("NOWAIT"))
       )
     ,
     fetch_clause: $ =>
