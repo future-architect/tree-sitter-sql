@@ -1557,3 +1557,29 @@ AND name not like '%taro%'
           (identifier)
           (string
             (content)))))))
+
+================================================================================
+SELECT FOR UPDATE
+================================================================================
+
+select * from employee
+where ID = '1'
+for update of tbl, tbl2;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (asterisk_expression)))
+    (from_clause
+      (identifier))
+    (where_clause
+      (binary_expression
+        (identifier)
+        (string
+          (content))))
+    (for_update_clause
+      (identifier)
+      (identifier))))
