@@ -689,6 +689,7 @@ module.exports = grammar({
           optional($.order_by_clause),
           optional($.limit_clause),
           optional($.offset_clause),
+          optional($.for_update_clause)
         ),
       ),
 
@@ -760,6 +761,12 @@ module.exports = grammar({
       prec.right(
         seq(kw("OFFSET"), $.number, optional(choice(kw("ROW"), kw("ROWS")))),
       ),
+    for_update_clause: $ =>
+      seq(
+        kw("FOR UPDATE"),
+        optional(seq(kw("OF"), commaSep1(field("table_name", $._identifier)))),
+      )
+    ,
     fetch_clause: $ =>
       seq(
         kw("FETCH"),
@@ -793,7 +800,7 @@ module.exports = grammar({
           seq(
             kw("DISTINCT"),
             optional(seq(kw("ON"), "(", commaSep($._expression), ")"))
-        ))),
+          ))),
         optional($.select_clause_body)
       )),
     from_clause: $ => seq(kw("FROM"), commaSep1($._aliasable_expression)),
