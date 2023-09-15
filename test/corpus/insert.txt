@@ -2,11 +2,12 @@
 INSERT statement
 ================================================================================
 
-INSERT INTO table1 VALUES (1, 'test')
-INSERT INTO table1 (col1) VALUES (1)
-INSERT INTO table1 ("Foo 1") VALUES (1)
-INSERT INTO table1 ("Foo 1", bar) VALUES (1, 2)
+INSERT INTO table1 VALUES (1, 'test');
+INSERT INTO table1 (col1) VALUES (1);
+INSERT INTO table1 ("Foo 1") VALUES (1);
+INSERT INTO table1 ("Foo 1", bar) VALUES (1, 2);
 INSERT INTO table2 SELECT * FROM generate_series(1, 100, 1);
+INSERT INTO table1 (SELECT * FROM generate_series(1, 100, 1))
 
 --------------------------------------------------------------------------------
 
@@ -49,7 +50,20 @@ INSERT INTO table2 SELECT * FROM generate_series(1, 100, 1);
           (identifier)
           (number)
           (number)
-          (number))))))
+          (number)))))
+  (insert_statement
+    (identifier)
+    (select_subexpression
+      (select_statement
+        (select_clause
+          (select_clause_body
+            (asterisk_expression)))
+        (from_clause
+          (function_call
+            (identifier)
+            (number)
+            (number)
+            (number)))))))
 
 ================================================================================
 INSERT statement values with multiple items

@@ -4939,6 +4939,10 @@
           "named": true
         },
         {
+          "type": "select_subexpression",
+          "named": true
+        },
+        {
           "type": "set_clause",
           "named": true
         },
