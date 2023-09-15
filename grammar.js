@@ -874,7 +874,7 @@ module.exports = grammar({
         kw("INTO"),
         $._aliasable_identifier,
         optional(seq("(", commaSep1($._identifier), ")")),
-        choice($.values_clause, $.select_statement, $.set_clause),
+        choice($.values_clause, $.select_statement, $.select_subexpression, $.set_clause),
         optional($.on_conflict_clause),
         optional($.returning_clause),
       ),
