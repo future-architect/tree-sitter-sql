@@ -1609,3 +1609,42 @@ for update of test1, test2 nowait;
     (for_update_clause
       (identifier)
       (identifier))))
+
+================================================================================
+type_cast with NULL, TRUE, FALSE
+================================================================================
+
+select null::text	AS	"test";
+select TRUE::boolean	AS	"bool";
+select FALSE::boolean	AS	"bool";
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (alias
+          (type_cast
+            (NULL)
+            (type
+              (identifier)))
+          (identifier)))))
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (alias
+          (type_cast
+            (TRUE)
+            (type
+              (identifier)))
+          (identifier)))))
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (alias
+          (type_cast
+            (FALSE)
+            (type
+              (identifier)))
+          (identifier))))))
