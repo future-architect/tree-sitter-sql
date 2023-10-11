@@ -469,6 +469,18 @@
       "required": true,
       "types": [
         {
+          "type": "FALSE",
+          "named": true
+        },
+        {
+          "type": "NULL",
+          "named": true
+        },
+        {
+          "type": "TRUE",
+          "named": true
+        },
+        {
           "type": "dotted_name",
           "named": true
         },
@@ -3147,6 +3159,18 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "FALSE",
+          "named": true
+        },
+        {
+          "type": "NULL",
+          "named": true
+        },
+        {
+          "type": "TRUE",
+          "named": true
+        },
         {
           "type": "function_call",
           "named": true
@@ -7955,6 +7979,18 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "FALSE",
+          "named": true
+        },
+        {
+          "type": "NULL",
+          "named": true
+        },
+        {
+          "type": "TRUE",
+          "named": true
+        },
         {
           "type": "dotted_name",
           "named": true
