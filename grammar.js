@@ -850,6 +850,7 @@ module.exports = grammar({
         $._aliasable_identifier,
         $.set_clause,
         optional($.from_clause),
+        optional(repeat($.join_clause)),
         optional($.where_clause),
         optional($.returning_clause),
       ),

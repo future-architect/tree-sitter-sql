@@ -232,3 +232,71 @@ UPDATE weather SET (temp_lo, temp_hi, prcp) = (temp_lo+1, temp_lo+15, DEFAULT)
           left: (identifier)
           right: (string
             content: (content)))))))
+
+================================================================================
+UPDATE statement with JOIN clause
+================================================================================
+
+
+update /* _SQL_ID_ */
+	tbl	t
+set
+	t.col2	=	a.col2
+,	t.col3	=	a.col3
+from
+	tbl_a	a
+left outer join
+	tbl_b	b
+on
+	a.col1	=	b.col1
+where
+	t.id = a.id;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (update_statement
+    (comment)
+    (alias
+      (identifier)
+      (identifier))
+    (set_clause
+      (set_clause_body
+        (assigment_expression
+          (dotted_name
+            (identifier)
+            (identifier))
+          (dotted_name
+            (identifier)
+            (identifier)))
+        (assigment_expression
+          (dotted_name
+            (identifier)
+            (identifier))
+          (dotted_name
+            (identifier)
+            (identifier)))))
+    (from_clause
+      (alias
+        (identifier)
+        (identifier)))
+    (join_clause
+      (join_type)
+      (alias
+        (identifier)
+        (identifier))
+      (binary_expression
+        left: (dotted_name
+          (identifier)
+          (identifier))
+        right: (dotted_name
+          (identifier)
+          (identifier))))
+    (where_clause
+      (binary_expression
+        left: (dotted_name
+          (identifier)
+          (identifier))
+        right: (dotted_name
+          (identifier)
+          (identifier))))))
