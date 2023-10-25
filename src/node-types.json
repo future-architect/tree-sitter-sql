@@ -8425,6 +8425,10 @@
           "named": true
         },
         {
+          "type": "join_clause",
+          "named": true
+        },
+        {
           "type": "returning_clause",
           "named": true
         },

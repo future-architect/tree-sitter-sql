@@ -279,10 +279,7 @@ where
     (from_clause
       (alias
         (identifier)
-        (identifier))))
-  (select_statement
-    (select_clause
-      (MISSING "SELECT"))
+        (identifier)))
     (join_clause
       (join_type)
       (alias
