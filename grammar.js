@@ -936,7 +936,9 @@ module.exports = grammar({
     // DELETE
     // TODO: support returning clauses
     _delete_statement: $ =>
-      seq(kw("DELETE"), $.from_clause, optional($.where_clause), optional($.returning_clause)),
+      seq(kw("DELETE"), $.from_clause, optional($.using_table_list), optional($.where_clause), optional($.returning_clause)),
+
+    using_table_list: $ => seq(kw("USING"), commaSep1($._aliasable_expression)),
 
     conditional_expression: $ =>
       seq(

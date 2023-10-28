@@ -108,3 +108,38 @@ DELETE FROM products
           content: (content))))
     (returning_clause
       (asterisk_expression))))
+
+================================================================================
+DELETE statement with using
+================================================================================
+
+DELETE FROM TBL_A A
+USING TBL_B B
+WHERE A.COL1 = B.COL1 AND B.COL2 > 10
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (delete_statement
+    (from_clause
+      (alias
+        (identifier)
+        (identifier)))
+    (using_table_list
+      (alias
+        (identifier)
+        (identifier)))
+    (where_clause
+      (boolean_expression
+        (binary_expression
+          (dotted_name
+            (identifier)
+            (identifier))
+          (dotted_name
+            (identifier)
+            (identifier)))
+        (binary_expression
+          (dotted_name
+            (identifier)
+            (identifier))
+          (number))))))
