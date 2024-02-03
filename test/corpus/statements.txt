@@ -783,7 +783,7 @@ CREATE TYPE base
 ================================================================================
 
 CREATE TYPE type_name (
-  internallength = 16, 
+  internallength = 16,
   input = in_func,
   output = out_func
 );
@@ -1983,6 +1983,12 @@ ALTER TABLE
 ALTER TABLE ONLY foo ALTER COLUMN myid SET DEFAULT nextval('myseq0'::regclass);
 ALTER TABLE bar
     ADD COLUMN col1 UUID REFERENCES baz (col1) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE bar
+    ADD col1 UUID REFERENCES baz (col1) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE "mytable"
+  ADD "col1" BOOLEAN,
+  ADD "col2" BOOLEAN,
+  ADD "col3" BOOLEAN;
 ALTER TABLE mytable0
     ADD FOREIGN KEY (mykey) REFERENCES mytable1 (col1_id)
       ON UPDATE CASCADE ON DELETE RESTRICT INITIALLY DEFERRED;
@@ -2020,6 +2026,39 @@ ALTER TABLE foo OWNER TO bar;
               (identifier)
               (on_update_action)
               (on_delete_action)))))))
+  (alter_statement
+    (alter_table
+      (identifier)
+      (alter_table_action
+        (alter_table_action_add
+          (table_column
+            (identifier)
+            (type
+              (identifier))
+            (references_constraint
+              (identifier)
+              (identifier)
+              (on_update_action)
+              (on_delete_action)))))))
+  (alter_statement
+    (alter_table
+      (identifier)
+      (alter_table_action
+        (alter_table_action_add
+          (table_column
+            (identifier)
+            (type
+              (identifier))))
+        (alter_table_action_add
+          (table_column
+            (identifier)
+            (type
+              (identifier))))
+        (alter_table_action_add
+          (table_column
+            (identifier)
+            (type
+              (identifier)))))))
   (alter_statement
     (alter_table
       (identifier)
