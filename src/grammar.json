@@ -1526,20 +1526,28 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "TOKEN",
-                    "content": {
-                      "type": "PREC",
-                      "value": 1,
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "ALIAS",
                       "content": {
-                        "type": "PATTERN",
-                        "value": "[cC][oO][lL][uU][mM][nN]"
-                      }
+                        "type": "TOKEN",
+                        "content": {
+                          "type": "PREC",
+                          "value": 1,
+                          "content": {
+                            "type": "PATTERN",
+                            "value": "[cC][oO][lL][uU][mM][nN]"
+                          }
+                        }
+                      },
+                      "named": false,
+                      "value": "COLUMN"
+                    },
+                    {
+                      "type": "BLANK"
                     }
-                  },
-                  "named": false,
-                  "value": "COLUMN"
+                  ]
                 },
                 {
                   "type": "SYMBOL",
@@ -1550,6 +1558,18 @@
             {
               "type": "SYMBOL",
               "name": "_table_constraint"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": ","
+            },
+            {
+              "type": "BLANK"
             }
           ]
         }
@@ -1653,8 +1673,11 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "alter_table_action_add"
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "alter_table_action_add"
+          }
         },
         {
           "type": "SYMBOL",

@@ -244,7 +244,11 @@ module.exports = grammar({
     alter_table_action_add: $ =>
       seq(
         kw("ADD"),
-        choice(seq(kw("COLUMN"), $.table_column), $._table_constraint),
+        choice(
+          seq(optional(kw("COLUMN")), $.table_column),
+          $._table_constraint
+        ),
+        optional(","),
       ),
     alter_table_action_set: $ => seq(kw("SET"), $._expression),
     alter_table_rename_column: $ =>
@@ -257,7 +261,7 @@ module.exports = grammar({
       ),
     alter_table_action: $ =>
       choice(
-        $.alter_table_action_add,
+        repeat1($.alter_table_action_add),
         $.alter_table_action_alter_column,
         $.alter_table_action_set,
         alias($.alter_owner_action, $.alter_owner),
