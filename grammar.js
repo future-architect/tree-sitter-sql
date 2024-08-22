@@ -757,7 +757,7 @@ module.exports = grammar({
     limit_clause: $ =>
       seq(
         kw("LIMIT"),
-        choice(kw("ALL"), $.number, $.binary_expression, $.unary_expression)
+        choice(kw("ALL"), $._expression)
       ),
     offset_clause: $ =>
       prec.right(

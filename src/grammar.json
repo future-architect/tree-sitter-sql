@@ -8432,15 +8432,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "number"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "binary_expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "unary_expression"
+              "name": "_expression"
             }
           ]
         }
