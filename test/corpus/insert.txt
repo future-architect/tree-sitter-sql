@@ -120,7 +120,8 @@ INSERT statement values with limit
 
 INSERT INTO table1 VALUES (1, 'a'), (2, 'b') LIMIT 1;
 INSERT INTO table1 VALUES (1, 'a'), (2, 'b') LIMIT ALL;
-INSERT INTO table1 VALUES (1, 'a'), (2, 'b') LIMIT 1, 1;
+INSERT INTO table1 VALUES (1, 'a'), (2, 'b') LIMIT +1;
+INSERT INTO table1 VALUES (1, 'a'), (2, 'b') LIMIT 1 + 2;
 
 --------------------------------------------------------------------------------
 
@@ -162,8 +163,23 @@ INSERT INTO table1 VALUES (1, 'a'), (2, 'b') LIMIT 1, 1;
         (string
           (content)))
       (limit_clause
+        (unary_expression
+          (number)))))
+  (insert_statement
+    (identifier)
+    (values_clause
+      (values_clause_item
         (number)
-        (number)))))
+        (string
+          (content)))
+      (values_clause_item
+        (number)
+        (string
+          (content)))
+      (limit_clause
+        (binary_expression
+          (number)
+          (number))))))
 
 ================================================================================
 INSERT statement values with offset

@@ -207,8 +207,10 @@ FROM table1 AS t, table2 t2, table3
 SELECT with limit
 ================================================================================
 
+SELECT * FROM foo LIMIT ALL;
 SELECT * FROM foo LIMIT 10;
-SELECT * FROM foo LIMIT 10, 5;
+SELECT * FROM foo LIMIT +10;
+SELECT * FROM foo LIMIT 1 + 2;
 SELECT * FROM foo LIMIT 10 OFFSET 5;
 
 --------------------------------------------------------------------------------
@@ -220,6 +222,13 @@ SELECT * FROM foo LIMIT 10 OFFSET 5;
         (asterisk_expression)))
     (from_clause
       (identifier))
+    (limit_clause))
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (asterisk_expression)))
+    (from_clause
+      (identifier))
     (limit_clause
       (number)))
   (select_statement
@@ -229,8 +238,18 @@ SELECT * FROM foo LIMIT 10 OFFSET 5;
     (from_clause
       (identifier))
     (limit_clause
-      (number)
-      (number)))
+      (unary_expression
+        (number))))
+  (select_statement
+    (select_clause
+      (select_clause_body
+        (asterisk_expression)))
+    (from_clause
+      (identifier))
+    (limit_clause
+      (binary_expression
+        (number)
+        (number))))
   (select_statement
     (select_clause
       (select_clause_body

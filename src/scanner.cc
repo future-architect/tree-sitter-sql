@@ -1,6 +1,6 @@
 #include <tree_sitter/parser.h>
-#include <string>
-#include <cwctype>
+#include "string"
+#include "cwctype"
 
 namespace {
 
