@@ -757,8 +757,7 @@ module.exports = grammar({
     limit_clause: $ =>
       seq(
         kw("LIMIT"),
-        choice($.number, kw("ALL")),
-        optional(seq(",", $.number)), // MySQL LIMIT a, b
+        choice(kw("ALL"), $.number, $.binary_expression, $.unary_expression)
       ),
     offset_clause: $ =>
       prec.right(

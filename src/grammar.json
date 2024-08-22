@@ -8415,10 +8415,6 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "number"
-            },
-            {
               "type": "ALIAS",
               "content": {
                 "type": "TOKEN",
@@ -8433,27 +8429,18 @@
               },
               "named": false,
               "value": "ALL"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ","
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "number"
-                }
-              ]
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "number"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "binary_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "unary_expression"
             }
           ]
         }
